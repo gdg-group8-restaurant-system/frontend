@@ -1,7 +1,8 @@
-export default function HeroSection() {
+import HeroSection from "../components/HeroSection";
+export default function HomePage() {
   return (
     <div>
-      home page
+      <HeroSection />
     </div>
   );
 }
