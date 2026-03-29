@@ -53,6 +53,28 @@ export default function HomePage() {
           description: "This is a delicious sample food.",
           price: "9.988"
         }} />
+
+            {/* CTA section */}
+    <section className="w-full bg-orange-500 py-12 sm:py-16 md:py-20">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center text-white">
+        
+        {/* Title */}
+        <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold leading-tight mb-3 sm:mb-4">
+          Ready to Order?
+        </h2>
+
+        {/* Description */}
+        <p className="text-sm sm:text-base md:text-lg text-white/90 mb-6 sm:mb-8">
+          Join hundreds of students enjoying quick and delicious meals
+        </p>
+
+        {/* Button */}
+        <button className="w-full sm:w-auto bg-gray-200 text-gray-800 px-6 py-3 rounded-md font-medium hover:bg-gray-300 transition">
+          Get Started Today
+        </button>
+
+      </div>
+    </section>
     </div>
   );
 }
