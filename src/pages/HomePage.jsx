@@ -1,6 +1,8 @@
 import { Utensils, Clock, CreditCard } from "lucide-react";
 import FoodCard from "../components/FoodCard";
 import HeroSection from "../components/HeroSection";
+import { popularDishes } from "../data/popularDishes";
+
 export default function HomePage() {
    const features = [
     {
@@ -47,12 +49,34 @@ export default function HomePage() {
       </section>
 
          {/* Featured Items */}
-           <FoodCard item={{
-          image: "https://images.unsplash.com/photo-1763890869755-f1dce911f196?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=800",
-          name: "Sample Food",
-          description: "This is a delicious sample food.",
-          price: "9.988"
-        }} />
+           <section className="w-full bg-gray-100 py-12 sm:py-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+
+        {/* Header */}
+        <div className="flex items-center justify-between mb-8">
+          <div>
+            <h2 className="text-xl sm:text-2xl font-semibold">
+              Featured Items
+            </h2>
+            <p className="text-gray-500 text-sm sm:text-base">
+              Try our most popular dishes
+            </p>
+          </div>
+
+          <button className="flex items-center gap-2 text-sm font-medium hover:text-orange-500">
+            View All →
+          </button>
+        </div>
+
+        {/* Cards Grid */}
+        <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+          {popularDishes.map((item) => (
+            <FoodCard key={item.id} item={item} />
+          ))}
+        </div>
+
+      </div>
+    </section>
 
             {/* CTA section */}
     <section className="w-full bg-orange-500 py-12 sm:py-16 md:py-20">
