@@ -10,15 +10,14 @@ import FavoritesPage from "../pages/FavoritesPage";
 import LoginPage from "../pages/LoginPage";
 import RegisterPage from "../pages/RegisterPage";
 
-import Dashboard from "../pages/admin-page/Dashboard";
-import MenuManagement from "../pages/admin-page/MenuManagement";
-import Orders from "../pages/admin-page/Orders";
-import OpenPage from "../pages/OpenPage";
-
+import Dashboard from "../pages/admin/Dashboard";
+import LandingPage from "../pages/LandingPage";
 export default function AppRouter() {
   return (
     <BrowserRouter>
       <Routes>
+          {/* Landing Page */}
+          <Route path="/" element={<LandingPage />} />
 
         {/* Public Layout */}
         <Route path="/user" element={<MainLayout />}>
@@ -35,9 +34,7 @@ export default function AppRouter() {
         {/* Admin */}
         <Route path="/admin" element={<AdminLayout />}>
           <Route index element={<Dashboard />} />
-          <Route path="menu" element={<MenuManagement />} />
-          <Route path="orders" element={<Orders />} />
-        </Route>
+     </Route>
 
       </Routes>
     </BrowserRouter>
