@@ -17,8 +17,8 @@ export default function AppRouter() {
   return (
     <BrowserRouter>
       <Routes>
-          {/* Landing Page */}
-          <Route path="/" element={<LandingPage />} />
+        {/* Landing Page */}
+        <Route path="/" element={<LandingPage />} />
 
         {/* Public Layout */}
         <Route path="/user" element={<MainLayout />}>
@@ -26,19 +26,18 @@ export default function AppRouter() {
           <Route path="menu" element={<MenuPage />} />
           <Route path="cart" element={<CartPage />} />
           <Route path="favorites" element={<FavoritesPage />} />
+          <Route path="login" element={<LoginPage />} />
+          <Route path="register" element={<RegisterPage />} />
         </Route>
 
         {/* Auth */}
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
 
         {/* Admin */}
         <Route path="/admin" element={<AdminLayout />}>
           <Route index element={<Dashboard />} />
-          <Route path="menu" element={<Dashboard />} /> 
+          <Route path="menu" element={<Dashboard />} />
           <Route path="orders" element={<Orders />} />
-     </Route>
-
+        </Route>
       </Routes>
     </BrowserRouter>
   );

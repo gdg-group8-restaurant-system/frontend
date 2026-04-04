@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Heart, ShoppingCart, User, Menu, X, Settings } from "lucide-react";
+import { Heart, ShoppingCart, User, Menu, X } from "lucide-react";
 import { NavLink } from "react-router-dom";
 
 export default function Navbar() {
@@ -20,39 +20,36 @@ export default function Navbar() {
 
         {/* Desktop Menu */}
         <ul className="hidden md:flex items-center gap-8 text-gray-600 font-medium">
-          <NavLink to="/user" className={linkClass}>
+          <NavLink to="/user" className={linkClass} end>
             Home
           </NavLink>
-          <NavLink to="/menu" className={linkClass}>
+          <NavLink to="/user/menu" className={linkClass}>
             Menu
           </NavLink>
-          <NavLink to="/favorites" className={linkClass}>
+          <NavLink to="/user/favorites" className={linkClass}>
             Favorites
           </NavLink>
         </ul>
 
         {/* Desktop Icons */}
         <div className="hidden md:flex items-center gap-5 text-gray-700">
-          <NavLink to="/favorites">
+          <NavLink to="/user/favorites" className={linkClass}>
             <Heart className="w-5 h-5 cursor-pointer hover:text-orange-500" />
           </NavLink>
 
-          <NavLink to="/cart">
+          <NavLink to="/user/cart" className={linkClass}>
             <ShoppingCart className="w-5 h-5 cursor-pointer hover:text-orange-500" />
           </NavLink>
 
           {profile ? (
-            <NavLink to="/profile">
+            <NavLink to="/user/profile" className={linkClass}>
               <User className="w-5 h-5 cursor-pointer hover:text-orange-500" />
             </NavLink>
           ) : (
-            <NavLink to="/login">
+            <NavLink to="/user/login" className={linkClass}>
               <User className="w-5 h-5 cursor-pointer hover:text-orange-500" />
             </NavLink>
           )}
-          <NavLink to="/admin">
-            <Settings className="w-5 h-5 cursor-pointer hover:text-orange-500" />
-          </NavLink>
         </div>
 
         {/* Mobile Toggle */}
@@ -74,40 +71,37 @@ export default function Navbar() {
       {/* Mobile Menu */}
       {open && (
         <div className="md:hidden mt-4 flex flex-col gap-4 text-gray-700">
-          <NavLink to="/" onClick={() => setOpen(false)}>
+          <NavLink to="/user" onClick={() => setOpen(false)} className={linkClass} end>
             Home
           </NavLink>
 
-          <NavLink to="/menu" onClick={() => setOpen(false)}>
+          <NavLink to="/user/menu" onClick={() => setOpen(false)} className={linkClass}>
             Menu
           </NavLink>
 
-          <NavLink to="/favorites" onClick={() => setOpen(false)}>
+          <NavLink to="/user/favorites" onClick={() => setOpen(false)} className={linkClass}>
             Favorites
           </NavLink>
 
           {/* Mobile Icons */}
           <div className="flex gap-5 pt-2">
-            <NavLink to="/favorites" onClick={() => setOpen(false)}>
+            <NavLink to="/user/favorites" onClick={() => setOpen(false)} className={linkClass}>
               <Heart className="w-5 h-5" />
             </NavLink>
 
-            <NavLink to="/cart" onClick={() => setOpen(false)}>
+            <NavLink to="/user/cart" onClick={() => setOpen(false)} className={linkClass}>
               <ShoppingCart className="w-5 h-5" />
             </NavLink>
 
             {profile ? (
-              <NavLink to="/profile" onClick={() => setOpen(false)}>
+              <NavLink to="/user/profile" onClick={() => setOpen(false)} className={linkClass}>
                 <User className="w-5 h-5" />
               </NavLink>
             ) : (
-              <NavLink to="/login" onClick={() => setOpen(false)}>
+              <NavLink to="/user/login" onClick={() => setOpen(false)} className={linkClass}>
                 <User className="w-5 h-5" />
               </NavLink>
             )}
-            <NavLink to="/admin" onClick={() => setOpen(false)}>
-              <Settings className="w-5 h-5" />
-            </NavLink>
           </div>
         </div>
       )}

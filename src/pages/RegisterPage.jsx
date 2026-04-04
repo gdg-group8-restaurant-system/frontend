@@ -1,22 +1,11 @@
+import { NavLink } from "react-router-dom";
+
 export default function RegisterPage() {
   return (
-    <div className="auth-page">
-      <h1>Register</h1>
-      <form>
-        <div>
-          <label htmlFor="username">Username</label>
-          <input type="text" id="username" name="username" required />
-        </div>
-        <div>
-          <label htmlFor="email">Email</label>
-          <input type="email" id="email" name="email" required />
-        </div>
-        <div>
-          <label htmlFor="password">Password</label>
-          <input type="password" id="password" name="password" required />
-        </div>
-        <button type="submit">Register</button>
-      </form>
+    <div className="container mx-auto px-4 py-12">
+      This is the register page. You can implement your registration form here.
+      <br />
+      Already have an account? <NavLink to="/user/login" className="text-blue-500 hover:underline">Login here.</NavLink>
     </div>
   );
 }
