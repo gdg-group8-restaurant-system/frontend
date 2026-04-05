@@ -1,41 +1,45 @@
-import { useEffect, useState } from "react";
 import OrderCard from "../../components/admin/OrderCard";
-import { getAllOrders } from "../../api/adminApi";
+
+const ORDERS_DATA = [
+  {
+    id: "ORD001",
+    date: "Mar 26, 2026",
+    time: "10:30 AM",
+    customerName: "John Doe",
+    customerId: "STU001",
+    status: "Preparing",
+    total: 22.97,
+    items: [
+      { name: "Classic Burger", quantity: 2, price: 17.98, note: "No onions please" },
+      { name: "Iced Coffee", quantity: 1, price: 4.99 }
+    ]
+  },
+  {
+    id: "ORD002",
+    date: "Mar 26, 2026",
+    time: "11:15 AM",
+    customerName: "Jane Smith",
+    customerId: "STU002",
+    status: "Ready",
+    total: 26.97,
+    items: [
+      { name: "Margherita Pizza", quantity: 1, price: 12.99 },
+      { name: "Chocolate Cake", quantity: 2, price: 13.98 }
+    ]
+  }
+];
 
 export default function Orders() {
-  const [orders, setOrders] = useState([]);
-
-  const fetchOrders = async () => {
-    try {
-      const data = await getAllOrders();
-      setOrders(data);
-    } catch (error) {
-      console.error("Error fetching orders", error);
-    }
-  };
-
-  useEffect(() => {
-    fetchOrders();
-  }, []);
-
   return (
     <div className="max-w-5xl mx-auto">
       <div className="mb-8">
-        <h1 className="text-2xl font-bold text-gray-800">
-          Orders Management
-        </h1>
-        <p className="text-gray-500">
-          Monitor and update order statuses
-        </p>
+        <h1 className="text-2xl font-bold text-gray-800">Orders Management</h1>
+        <p className="text-gray-500">Monitor and update order statuses</p>
       </div>
 
       <div className="space-y-2">
-        {orders.map((order) => (
-          <OrderCard
-            key={order._id}
-            order={order}
-            refreshOrders={fetchOrders}
-          />
+        {ORDERS_DATA.map((order) => (
+          <OrderCard key={order.id} order={order} />
         ))}
       </div>
     </div>
