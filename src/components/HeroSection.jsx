@@ -1,5 +1,6 @@
 import { ArrowRight } from "lucide-react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function HeroSection() {
   const [imgSrc, setImgSrc] = useState(
@@ -27,9 +28,9 @@ export default function HeroSection() {
               <button className="flex items-center gap-2 rounded-md bg-orange-500 px-6 py-3 text-white font-medium hover:bg-orange-600 transition">
                 Browse Menu <ArrowRight className="h-5 w-5" />
               </button>
-              <button className="rounded-md border border-orange-500 px-6 py-3 text-orange-500 font-medium hover:bg-orange-50 transition">
+              <Link to="/register" className="rounded-md border border-orange-500 px-6 py-3 text-orange-500 font-medium hover:bg-orange-50 transition">
                 Sign Up
-              </button>
+              </Link>
             </div>
           </div>
 
