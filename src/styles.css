@@ -114,7 +114,7 @@
   justify-content: center;
 }
 .add-btn:hover {
-  background-color: #555;
+  background-color: #046d4d;
   color:white;
   transform: scale(1.1);
 }
