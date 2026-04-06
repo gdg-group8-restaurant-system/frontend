@@ -53,10 +53,10 @@ export default function OrderCard({ order, onUpdateStatus }) {
         onChange={handleChange}
         className="border p-2 rounded"
       >
-        <option>Pending</option>
-        <option>Preparing</option>
-        <option>Ready</option>
-        <option>Completed</option>
+        <option value="pending">Pending</option>
+        <option value="preparing">Preparing</option>
+        <option value="ready">Ready</option>
+        <option value="completed">Completed</option>
       </select>
     </div>
   );
