@@ -25,9 +25,9 @@ export default function HeroSection() {
               pickup, no waiting in line.
             </p>
             <div className="flex flex-wrap gap-4">
-              <button className="flex items-center gap-2 rounded-md bg-orange-500 px-6 py-3 text-white font-medium hover:bg-orange-600 transition">
+              <Link to="/user/menu" className="flex items-center gap-2 rounded-md bg-orange-500 px-6 py-3 text-white font-medium hover:bg-orange-600 transition">
                 Browse Menu <ArrowRight className="h-5 w-5" />
-              </button>
+              </Link>
               <Link to="/register" className="rounded-md border border-orange-500 px-6 py-3 text-orange-500 font-medium hover:bg-orange-50 transition">
                 Sign Up
               </Link>

@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-// import { useNavigate } from "react-router-dom";
 // import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import authApi from "../api/authApi";
 
 export default function RegisterPage() {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     fullName: "",
@@ -77,33 +78,34 @@ export default function RegisterPage() {
     setIsLoading(true);
 
     try {
-      // ──────────────────────────────────────────────
-      // TODO: Replace with actual API call
-      // const response = await axios.post("/api/auth/register", {
-      //   fullName: formData.fullName,
-      //   phone: formData.phone,
-      //   studentId: formData.studentId,
-      //   password: formData.password,
-      // });
-      // navigate("/login");
-      // ──────────────────────────────────────────────
+      await authApi.register({
+        name: formData.fullName,
+        phoneNumber: formData.phone,
+        studentId: formData.studentId,
+        password: formData.password,
+      });
 
-      // Simulated delay for UI testing
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-
-      // Simulated success (remove when API is connected)
       setSuccessMessage(
-        "Account created successfully! You can now log in."
+        "Account created successfully! Redirecting to login...",
       );
-      setFormData({ fullName: "", phone: "", studentId: "", password: "" });
+
+      setFormData({
+        fullName: "",
+        phone: "",
+        studentId: "",
+        password: "",
+      });
+
+      // redirect after 1.5 sec
+      setTimeout(() => {
+        navigate("/login");
+      }, 1500);
     } catch (err) {
-      // Handle API errors
-      // if (err.response) {
-      //   setGeneralError(err.response.data.message || "Registration failed");
-      // } else {
-      //   setGeneralError("Network error. Please try again later.");
-      // }
-      setGeneralError("Something went wrong. Please try again.");
+      if (err.response) {
+        setGeneralError(err.response.data.message || "Registration failed");
+      } else {
+        setGeneralError("Network error. Try again.");
+      }
     } finally {
       setIsLoading(false);
     }
@@ -119,9 +121,7 @@ export default function RegisterPage() {
             <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-xl bg-orange-500 text-2xl text-white shadow-md">
               🍴
             </div>
-            <h1 className="text-2xl font-bold text-gray-800">
-              Create Account
-            </h1>
+            <h1 className="text-2xl font-bold text-gray-800">Create Account</h1>
             <p className="mt-1 text-sm text-gray-500">
               Join Campus Eats and start ordering
             </p>
@@ -245,9 +245,7 @@ export default function RegisterPage() {
                 }`}
               />
               {errors.password && (
-                <p className="mt-1.5 text-xs text-red-500">
-                  {errors.password}
-                </p>
+                <p className="mt-1.5 text-xs text-red-500">{errors.password}</p>
               )}
             </div>
 

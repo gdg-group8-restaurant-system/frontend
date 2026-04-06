@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-// import { useNavigate } from "react-router-dom";
 // import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import authApi from "../api/authApi";
 
 export default function LoginPage() {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     phone: "",
@@ -54,33 +55,36 @@ export default function LoginPage() {
       return;
     }
 
-    setErrors({});
-    setGeneralError("");
     setIsLoading(true);
+    setGeneralError("");
 
     try {
-      // ──────────────────────────────────────────────
-      // TODO: Replace with actual API call
-      // const response = await axios.post("/api/auth/login", {
-      //   phone: formData.phone,
-      //   password: formData.password,
-      // });
-      // navigate("/user/menu");
-      // ──────────────────────────────────────────────
+      const res = await authApi.login({
+        phoneNumber: formData.phone,
+        password: formData.password,
+      });
 
-      // Simulated delay for UI testing
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      console.log("RESPONSE DATA:", res.data);
 
-      // Simulated error for demonstration (remove when API is connected)
-      setGeneralError("Login failed. Please check your credentials and try again.");
+      // ✅ FIX HERE
+      const token = res.data.accessToken;
+      const user = res.data.user;
+
+      if (!token) {
+        setGeneralError("Login failed (no token)");
+        return;
+      }
+
+      localStorage.setItem("token", token);
+      localStorage.setItem("user", JSON.stringify(user));
+
+      if (user.role === "admin") {
+        navigate("/admin");
+      } else {
+        navigate("/user");
+      }
     } catch (err) {
-      // Handle API errors
-      // if (err.response) {
-      //   setGeneralError(err.response.data.message || "Invalid credentials");
-      // } else {
-      //   setGeneralError("Network error. Please try again later.");
-      // }
-      setGeneralError("Something went wrong. Please try again.");
+      setGeneralError(err.response?.data?.message || "Login failed");
     } finally {
       setIsLoading(false);
     }
