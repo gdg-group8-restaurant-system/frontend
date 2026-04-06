@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
-  const profile = null; // Replace with actual auth logic
+  const profile = JSON.parse(localStorage.getItem("user"));
 
   const linkClass = ({ isActive }) =>
     isActive ? "text-orange-500 font-semibold" : "hover:text-orange-500";
@@ -23,36 +23,33 @@ export default function Navbar() {
           <NavLink to="/user" className={linkClass}>
             Home
           </NavLink>
-          <NavLink to="/menu" className={linkClass}>
+          <NavLink to="/user/menu" className={linkClass}>
             Menu
           </NavLink>
-          <NavLink to="/favorites" className={linkClass}>
+          <NavLink to="/user/favorites" className={linkClass}>
             Favorites
           </NavLink>
         </ul>
 
         {/* Desktop Icons */}
         <div className="hidden md:flex items-center gap-5 text-gray-700">
-          <NavLink to="/favorites">
+          <NavLink to="/user/favorites">
             <Heart className="w-5 h-5 cursor-pointer hover:text-orange-500" />
           </NavLink>
 
-          <NavLink to="/cart">
+          <NavLink to="/user/cart">
             <ShoppingCart className="w-5 h-5 cursor-pointer hover:text-orange-500" />
           </NavLink>
 
           {profile ? (
-            <NavLink to="/profile">
-              <User className="w-5 h-5 cursor-pointer hover:text-orange-500" />
+            <NavLink to="/user/profile">
+              <span>{profile.name}</span>
             </NavLink>
           ) : (
             <NavLink to="/login">
               <User className="w-5 h-5 cursor-pointer hover:text-orange-500" />
             </NavLink>
           )}
-          <NavLink to="/admin">
-            <Settings className="w-5 h-5 cursor-pointer hover:text-orange-500" />
-          </NavLink>
         </div>
 
         {/* Mobile Toggle */}
@@ -74,40 +71,37 @@ export default function Navbar() {
       {/* Mobile Menu */}
       {open && (
         <div className="md:hidden mt-4 flex flex-col gap-4 text-gray-700">
-          <NavLink to="/" onClick={() => setOpen(false)}>
+          <NavLink to="/user" onClick={() => setOpen(false)}>
             Home
           </NavLink>
 
-          <NavLink to="/menu" onClick={() => setOpen(false)}>
+          <NavLink to="/user/menu" onClick={() => setOpen(false)}>
             Menu
           </NavLink>
 
-          <NavLink to="/favorites" onClick={() => setOpen(false)}>
+          <NavLink to="/user/favorites" onClick={() => setOpen(false)}>
             Favorites
           </NavLink>
 
           {/* Mobile Icons */}
           <div className="flex gap-5 pt-2">
-            <NavLink to="/favorites" onClick={() => setOpen(false)}>
+            <NavLink to="/user/favorites" onClick={() => setOpen(false)}>
               <Heart className="w-5 h-5" />
             </NavLink>
 
-            <NavLink to="/cart" onClick={() => setOpen(false)}>
+            <NavLink to="/user/cart" onClick={() => setOpen(false)}>
               <ShoppingCart className="w-5 h-5" />
             </NavLink>
 
             {profile ? (
-              <NavLink to="/profile" onClick={() => setOpen(false)}>
-                <User className="w-5 h-5" />
+              <NavLink to="/user/profile" onClick={() => setOpen(false)}>
+                <span>{profile.name}</span>
               </NavLink>
             ) : (
               <NavLink to="/login" onClick={() => setOpen(false)}>
                 <User className="w-5 h-5" />
               </NavLink>
             )}
-            <NavLink to="/admin" onClick={() => setOpen(false)}>
-              <Settings className="w-5 h-5" />
-            </NavLink>
           </div>
         </div>
       )}
